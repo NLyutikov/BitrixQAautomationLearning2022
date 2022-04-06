@@ -14,17 +14,16 @@ namespace ATframework3demo.TestCases
 
         private void AddContactToCRM(PortalHomePage homePage)
         {
-            //перейти во вкладку CRM
-            //перейти в контакты
-            //перейти к добавлению контакта
             homePage
                 .LeftMenu
-                .OpenCRM()
-                .OpenContactsCRM()
-                .OpenContactForm();
-            //ввести имя
-            //сохранить контакт
-            //вернуться к списку контактов
+                .OpenCRM()                //перейти во вкладку CRM
+                .OpenContactsCRM()        //перейти в контакты
+                .OpenContactForm()        //перейти к добавлению контакта
+                .WriteNameToContactForm() //ввести имя
+                .SaveNewContact()         //сохранить контакт
+                .CloseContactForm()       //Закрыть контактную форму
+                ;
+
             //проверить созданный контакт
         }
     }
