@@ -8,7 +8,15 @@ namespace ATframework3demo.PageObjects
         internal CRM_AddContactForm OpenContactForm()
         {
             var btnAddContact = new WebItem("//a[@class='ui-btn ui-btn-primary ui-btn-icon-add crm-btn-toolbar-add']", "Кнопка добавления контакта");
-            btnAddContact.Click();
+            if (btnAddContact.WaitElementDisplayed())
+            {
+                Log.Info("Кнопка 'Добавить контакт' найдена");
+
+                btnAddContact.Click();
+            } else
+            {
+                Log.Error("Кнопка 'Добавить контакт' не найдена");
+            }
             return new CRM_AddContactForm();
         }
 
@@ -25,10 +33,10 @@ namespace ATframework3demo.PageObjects
                 var btnDeleteSelectedContacts = new WebItem("//span[@id='grid_remove_button_control']", "Кнопка удаления выбранных контактов");
                 btnDeleteSelectedContacts.Click();
 
-                var btnAcceptDelete = new WebItem("//span[@class='popup-window-button popup-window-button-accept']", "Кнопка подтверждения удаления контактов");
+                var btnAcceptDelete = new WebItem("//div[@id='crm_contact_list_v12_batch_delete']//span[@class='popup-window-button popup-window-button-accept']", "Кнопка подтверждения удаления контактов");
                 btnAcceptDelete.Click();
 
-                Log.Info("Контакт отобразился в списке. Отчистка успешна");
+                if (!createdContact.WaitElementDisplayed()) Log.Info("Контакт отобразился в списке. Отчистка успешна.");
             } else 
             {
                 Log.Error("Контакт не отобразился");

@@ -11,7 +11,16 @@ namespace ATframework3demo.PageObjects
             switchToAddContactFrame.SwitchToFrame();
 
             var fieldName = new WebItem("//input[@id='name_text']", "Поле ввода 'Имя'");
-            fieldName.SendKeys(name);
+
+            if (fieldName.WaitElementDisplayed())
+            {
+                Log.Info("Поле ввода 'Имя', в фрейме, найдено");
+
+                fieldName.SendKeys(name);
+            } else
+            {
+                Log.Error("Поле ввода 'Имя', в фрейме, не найдено");
+            }
 
             return new CRM_AddContactForm();
         }
@@ -19,7 +28,17 @@ namespace ATframework3demo.PageObjects
         internal CRM_AddContactForm SaveNewContact()
         {
             var btnSaveContact = new WebItem("//button[@class='ui-btn ui-btn-success']", "Кнопка сохранить");
-            btnSaveContact.Click();
+
+            if (btnSaveContact.WaitElementDisplayed())
+            {
+                Log.Info("Кнопка 'Сохранить', в фрейме, найдена");
+
+                btnSaveContact.Click();
+            }
+            else
+            {
+                Log.Error("Кнопка 'Сохранить', в фрейме, не найдена");
+            }
 
             DriverActions.SwitchToDefaultContent();
 
@@ -31,7 +50,17 @@ namespace ATframework3demo.PageObjects
         internal CRM_ContactsPage CloseContactForm()
         {
             var btnCloseContactForm = new WebItem("//div[@class='side-panel-label-icon side-panel-label-icon-close']", "Кнопка закрытия формы создания контакта");
-            btnCloseContactForm.Click();
+            
+            if (btnCloseContactForm.WaitElementDisplayed())
+            {
+                Log.Info("Кнопка 'Закрыть' найдена");
+
+                btnCloseContactForm.Click();
+            }
+            else
+            {
+                Log.Error("Кнопка 'Закрыть' не найдена");
+            }
             
             return new CRM_ContactsPage();
         }
