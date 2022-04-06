@@ -47,5 +47,12 @@ namespace atFrameWork2.PageObjects
             ClickMenuItem(btnNews);
             return new NewsPage();
         }
+
+        internal CRM_Page OpenCRM()
+        {
+            var btnCRM = new WebItem("//li[@id='bx_left_menu_menu_crm_favorite']", "Пункт левого меню CRM");
+            ClickMenuItem(btnCRM);
+            return new CRM_Page();
+        }
     }
 }
