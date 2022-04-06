@@ -8,6 +8,7 @@ namespace ATframework3demo.PageObjects
         {
             var btnContactsCRM = new WebItem("//div[@id='crm_control_panel_menu_menu_crm_contact']", "Переход во вкладку Контакты");
             btnContactsCRM.Click();
+
             return new CRM_ContactsPage();
         }
     }

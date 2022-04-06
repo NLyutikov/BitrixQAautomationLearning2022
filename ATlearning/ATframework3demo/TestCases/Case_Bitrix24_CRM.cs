@@ -16,15 +16,13 @@ namespace ATframework3demo.TestCases
         {
             homePage
                 .LeftMenu
-                .OpenCRM()                //перейти во вкладку CRM
-                .OpenContactsCRM()        //перейти в контакты
-                .OpenContactForm()        //перейти к добавлению контакта
-                .WriteNameToContactForm() //ввести имя
-                .SaveNewContact()         //сохранить контакт
-                .CloseContactForm()       //Закрыть контактную форму
-                ;
-
-            //проверить созданный контакт
+                .OpenCRM()                     //перейти во вкладку CRM
+                .OpenContactsCRM()             //перейти в контакты
+                .OpenContactForm()             //перейти к добавлению контакта
+                .WriteNameToContactForm()      //ввести имя
+                .SaveNewContact()              //сохранить контакт
+                .CloseContactForm()            //Закрыть контактную форму
+                .IsContactCreatAndDeleteAll(); //Проверка созданного контакта и его удаление
         }
     }
 }

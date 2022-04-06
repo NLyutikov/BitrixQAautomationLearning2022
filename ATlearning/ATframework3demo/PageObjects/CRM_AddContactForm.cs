@@ -5,13 +5,13 @@ namespace ATframework3demo.PageObjects
 {
     public class CRM_AddContactForm
     {
-        internal CRM_AddContactForm WriteNameToContactForm()
+        internal CRM_AddContactForm WriteNameToContactForm(string name)
         {
             var switchToAddContactFrame = new WebItem("//iframe[@class='side-panel-iframe']", "Переход на фрейм формы создания контакта");
             switchToAddContactFrame.SwitchToFrame();
 
             var fieldName = new WebItem("//input[@id='name_text']", "Поле ввода 'Имя'");
-            fieldName.SendKeys("test");
+            fieldName.SendKeys(name);
 
             return new CRM_AddContactForm();
         }
