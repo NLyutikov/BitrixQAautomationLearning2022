@@ -9,16 +9,34 @@ namespace atFrameWork2.PageObjects
     {
         public LinkGenerationPage CreateShortLink(string shortLinkName, string linkPath)
         {
-            var fieldShortLinkName = new WebItem("//input[@name = 'tag']", "Поле ввода 'Введите название'");
-            fieldShortLinkName.SendKeys(shortLinkName);
+            var shortLink = new WebItem($"//div[div[div[contains(text(), '{shortLinkName}')]]]/div[@name = 'link-short-path']", "Интересующая короткая ссылка");
+            if (shortLink.WaitElementDisplayed())
+            {
+                Log.Info("Такая короткая ссылка уже существует!");
+                return new LinkGenerationPage();
+            }
+            else
+            {
+                var fieldShortLinkName = new WebItem("//input[@name = 'tag']", "Поле ввода 'Введите название'");
+                fieldShortLinkName.SendKeys(shortLinkName);
 
-            var fieldLinkPath = new WebItem("//input[@name = 'url']", "Поле ввода 'Введите ссылку'");
-            fieldLinkPath.SendKeys(linkPath);
+                var fieldLinkPath = new WebItem("//input[@name = 'url']", "Поле ввода 'Введите ссылку'");
+                fieldLinkPath.SendKeys(linkPath);
 
-            var btnCreateShortLink = new WebItem("//input[@name = 'submit']", "Кнопка создания короткой ссылки");
-            btnCreateShortLink.Click();
+                var btnCreateShortLink = new WebItem("//input[@name = 'submit']", "Кнопка создания короткой ссылки");
+                btnCreateShortLink.Click();
 
-            return new LinkGenerationPage();
+                if (shortLink.WaitElementDisplayed())
+                {
+                    Log.Info("Короткая ссылка создана");
+                }
+                else
+                {
+                    Log.Error("Произошла ошибка при создании короткой ссылки");
+                }
+
+                return new LinkGenerationPage();
+            }
         }
 
         public LinkGenerationPage OpenShortLink(string shortLinkName)

@@ -14,15 +14,17 @@ namespace ATframework3demo.TestCases
 
         private void ShortLinkWhithStatistic(ProjectHomePage homePage)
         {
+            var businessName = "Уточки";
             var nameShortLink = "Прогноз погоды";
+            var linkPath = "https://www.gismeteo.ru/weather-kaliningrad-4225/";
 
             homePage
                 .BusinessCollection
-                .AddNewBusiness("Уточки")
-                .OpenBusiness("Уточки")
+                .AddNewBusiness(businessName)
+                .OpenBusiness(businessName)
                 .LeftMenu
                 .OpenLinkGeneration()
-                .CreateShortLink(nameShortLink, "https://www.gismeteo.ru/weather-kaliningrad-4225/")
+                .CreateShortLink(nameShortLink, linkPath)
                 .OpenShortLink(nameShortLink)
                 .LeftMenu
                 .OpenTransferStatistics()

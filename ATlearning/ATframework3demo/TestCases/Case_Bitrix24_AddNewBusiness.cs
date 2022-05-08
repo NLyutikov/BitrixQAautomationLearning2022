@@ -14,11 +14,13 @@ namespace ATframework3demo.TestCases
 
         private void AddNewBusiness(ProjectHomePage homePage)
         {
+            var businessName = "Кошечки";
+
             homePage
                 .BusinessCollection
-                .AddNewBusiness("Кошечки")
-                .OpenBusiness("Кошечки");
-                //Ввести название и нажить кнопку создать
+                .AddNewBusiness(businessName)
+                .OpenBusiness(businessName)
+                ;
         }
     }
 }

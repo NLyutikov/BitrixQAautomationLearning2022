@@ -16,7 +16,7 @@ namespace ATframework3demo.TestCases
         {
             homePage
                 .BusinessCollection
-                .OpenBusiness("Бизнес: Кошечки");
+                .OpenBusiness("Кошечки");
         }
     }
 }

@@ -18,8 +18,6 @@ namespace ATframework3demo.TestCases
                 .BusinessCollection
                 .OpenBusiness("Уточки")
                 .LeftMenu
-                //.OpenVisitStatistics()
-                //.LeftMenu
                 .OpenTransferStatistics()
                 .LeftMenu
                 .OpenLabelGeneration()
@@ -28,7 +26,6 @@ namespace ATframework3demo.TestCases
                 .LeftMenu
                 .OpenVisitStatistics()
                 ;
-                //Ввести название и нажить кнопку создать
         }
     }
 }
