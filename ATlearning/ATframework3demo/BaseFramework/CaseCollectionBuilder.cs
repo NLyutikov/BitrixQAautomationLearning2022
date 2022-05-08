@@ -20,17 +20,21 @@ namespace atFrameWork2.BaseFramework
 
         public static void ActivateTestCaseProvidersInstances(List<TestCase> resultCaseCollection)
         {
+#pragma warning disable CS8602 // Разыменование вероятной пустой ссылки.
             IEnumerable<Type> subclassTypes = Assembly
                 .GetAssembly(typeof(CaseCollectionBuilder))
                 .GetTypes()
                 .Where(t => t.IsSubclassOf(typeof(CaseCollectionBuilder)));
+#pragma warning restore CS8602 // Разыменование вероятной пустой ссылки.
 
             foreach (var subClassType in subclassTypes)
             {
                 try
                 {
                     var instance = Activator.CreateInstance(subClassType) as CaseCollectionBuilder;
+#pragma warning disable CS8602 // Разыменование вероятной пустой ссылки.
                     resultCaseCollection.AddRange(instance.CaseCollection);
+#pragma warning restore CS8602 // Разыменование вероятной пустой ссылки.
                 }
                 catch (Exception e)
                 {

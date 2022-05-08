@@ -12,9 +12,13 @@ namespace atFrameWork2.BaseFramework
 {
     public class TestCase
     {
+#pragma warning disable CS8618 // свойство "RunningTestCase", не допускающий значения NULL, должен содержать значение, отличное от NULL, при выходе из конструктора. Возможно, стоит объявить свойство как допускающий значения NULL.
         public static TestCase RunningTestCase { get; set; }
+#pragma warning restore CS8618 // свойство "RunningTestCase", не допускающий значения NULL, должен содержать значение, отличное от NULL, при выходе из конструктора. Возможно, стоит объявить свойство как допускающий значения NULL.
 
-        public TestCase(string title, Action<PortalHomePage> body)
+#pragma warning disable CS8618 // свойство "CaseLogPath", не допускающий значения NULL, должен содержать значение, отличное от NULL, при выходе из конструктора. Возможно, стоит объявить свойство как допускающий значения NULL.
+        public TestCase(string title, Action<ProjectHomePage> body)
+#pragma warning restore CS8618 // свойство "CaseLogPath", не допускающий значения NULL, должен содержать значение, отличное от NULL, при выходе из конструктора. Возможно, стоит объявить свойство как допускающий значения NULL.
         {
             Title = title ?? throw new ArgumentNullException(nameof(title));
             Body = body ?? throw new ArgumentNullException(nameof(body));
@@ -36,7 +40,7 @@ namespace atFrameWork2.BaseFramework
             try
             {
                 Log.Info($"---------------Запуск кейса '{Title}'---------------");
-                var portalLoginPage = new PortalLoginPage(testPortal);
+                var portalLoginPage = new ProjectLoginPage(testPortal);
                 var homePage = portalLoginPage.Login(testPortal.PortalAdmin);
                 Body.Invoke(homePage);
             }
@@ -52,7 +56,9 @@ namespace atFrameWork2.BaseFramework
                 if (WebItem._defaultDriver != default)
                 {
                     WebItem.DefaultDriver.Quit();
+#pragma warning disable CS8625 // Литерал, равный NULL, не может быть преобразован в ссылочный тип, не допускающий значение NULL.
                     WebItem.DefaultDriver = default;
+#pragma warning restore CS8625 // Литерал, равный NULL, не может быть преобразован в ссылочный тип, не допускающий значение NULL.
                 }
             }
             catch (Exception) { }
@@ -62,12 +68,14 @@ namespace atFrameWork2.BaseFramework
             else
                 Status = TestCaseStatus.passed;
 
+#pragma warning disable CS8625 // Литерал, равный NULL, не может быть преобразован в ссылочный тип, не допускающий значение NULL.
             RunningTestCase = default;
+#pragma warning restore CS8625 // Литерал, равный NULL, не может быть преобразован в ссылочный тип, не допускающий значение NULL.
             uiRefresher.Invoke();
         }
 
         public string Title { get; set; }
-        Action<PortalHomePage> Body { get; set; }
+        Action<ProjectHomePage> Body { get; set; }
         public TestCaseTreeNode Node { get; set; }
         public string CaseLogPath { get; set; }
         public List<LogMessage> CaseLog { get; } = new List<LogMessage>();

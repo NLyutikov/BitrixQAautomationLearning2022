@@ -7,13 +7,21 @@ using System.Diagnostics;
 
 if(args != default)
     EnvironmentSettings.AppArgs = args.ToList();
+#pragma warning disable CS8604 // Возможно, аргумент-ссылка, допускающий значение NULL, для параметра "args" в "WebApplicationBuilder WebApplication.CreateBuilder(string[] args)".
 var builder = WebApplication.CreateBuilder(args);
+#pragma warning restore CS8604 // Возможно, аргумент-ссылка, допускающий значение NULL, для параметра "args" в "WebApplicationBuilder WebApplication.CreateBuilder(string[] args)".
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddBlazoredModal();
+#pragma warning disable CS8604 // Возможно, аргумент-ссылка, допускающий значение NULL, для параметра "fileName" в "FileInfo.FileInfo(string fileName)".
+#pragma warning disable CS8602 // Разыменование вероятной пустой ссылки.
 var currentProcFilePath = new FileInfo(Process.GetCurrentProcess().MainModule.FileName);
+#pragma warning restore CS8602 // Разыменование вероятной пустой ссылки.
+#pragma warning restore CS8604 // Возможно, аргумент-ссылка, допускающий значение NULL, для параметра "fileName" в "FileInfo.FileInfo(string fileName)".
+#pragma warning disable CS8604 // Возможно, аргумент-ссылка, допускающий значение NULL, для параметра "path1" в "string Path.Combine(string path1, string path2)".
 builder.Environment.WebRootPath = Path.Combine(currentProcFilePath.DirectoryName, "wwwroot");
+#pragma warning restore CS8604 // Возможно, аргумент-ссылка, допускающий значение NULL, для параметра "path1" в "string Path.Combine(string path1, string path2)".
 builder.Environment.ContentRootPath = currentProcFilePath.DirectoryName;
 Environment.CurrentDirectory = currentProcFilePath.DirectoryName;
 Log.WriteHtmlHeader(Log.commonLogPath);
