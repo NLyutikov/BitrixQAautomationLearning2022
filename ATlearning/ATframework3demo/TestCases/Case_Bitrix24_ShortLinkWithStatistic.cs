@@ -14,8 +14,8 @@ namespace ATframework3demo.TestCases
 
         private void ShortLinkWhithStatistic(ProjectHomePage homePage)
         {
-            var businessName = "Уточки";
-            var nameShortLink = "Прогноз погоды";
+            var businessName = "ЧекБек";
+            var nameShortLink = "Прогноз у дома";
             var linkPath = "https://www.gismeteo.ru/weather-kaliningrad-4225/";
 
             homePage

@@ -24,7 +24,7 @@ namespace atFrameWork2.PageObjects
             var loginField = new WebItem("//input[@id='login']", "Поле для ввода логина");
             var pwdField = new WebItem("//input[@id='password']", "Поле для ввода пароля");
             loginField.SendKeys(admin.Login);
-            Thread.Sleep(2000);
+            //Thread.Sleep(2000);
             //loginField.SendKeys(Keys.Enter);
             pwdField.SendKeys(admin.Password, logInputtedText: false);
             Thread.Sleep(2000);

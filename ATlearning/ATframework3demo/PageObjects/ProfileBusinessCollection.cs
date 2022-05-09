@@ -8,11 +8,10 @@ namespace atFrameWork2.PageObjects
         public ProfileBusinessCollection AddNewBusiness(string businessName)
         {
             var checkBusinessName = new WebItem($"//div[contains(text(), '{businessName}')]", "Название сужествующего бизнеса");
-            if (checkBusinessName.WaitElementDisplayed())
+            if (checkBusinessName.WaitElementDisplayed(1))
             {
                 Log.Info("Такой бизнес уже существует!");
 
-                return new ProfileBusinessCollection();
             }
             else
             {
@@ -22,7 +21,7 @@ namespace atFrameWork2.PageObjects
                 var addNewBusinessBtn = new WebItem("//button[@class = 'ui-btn ui-btn-success']", "Кнопка добавления бизнеса");
                 addNewBusinessBtn.Click();
 
-                if (checkBusinessName.WaitElementDisplayed())
+                if (checkBusinessName.WaitElementDisplayed(2))
                 {
                     Log.Info("Бизнес успешно создан");
                 }
@@ -30,9 +29,9 @@ namespace atFrameWork2.PageObjects
                 {
                     Log.Error("При создании бизнеса произошла ошибка");
                 }
-
-                return new ProfileBusinessCollection();
             }
+
+            return new ProfileBusinessCollection();
         }
 
         public BusinessPage OpenBusiness(string businessName)
